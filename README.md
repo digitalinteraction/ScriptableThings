@@ -1,6 +1,6 @@
 # ScriptableThings
 
-ScriptableThings is an Arduino library for building IoT devices that can easily be reprogrammed and reconfigured by administrators or users with standards-based JavaScript. It introduces a new malleable layer allowing dynamic scripting on devices, instead of functionality being baked into the firmware. The library enables you to create an API between your hardware and the scripting layer. We hope this makes IoT more maintainable over time, more resilient to vanishing cloud services and more-safely hackable devices.
+ScriptableThings is an Arduino library for building IoT devices that can easily be reprogrammed and reconfigured by developers or users with standards-based JavaScript. It introduces a new malleable layer allowing dynamic scripting on devices, instead of functionality being baked into the firmware. The library enables you to create an API between your hardware and the scripting layer. We hope this makes IoT more maintainable over time, more resilient to vanishing cloud services and more-safely hackable devices.
 
 ## Dependencies
 
