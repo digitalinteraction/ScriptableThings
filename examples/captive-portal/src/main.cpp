@@ -5,10 +5,7 @@
 #include <SPIFFS.h>
 
 auto server = AsyncWebServer(80);
-auto portal = CaptivePortal("ProgThing Portal");
-auto engine = ProgramEngine(&SPIFFS, "/scripts/", ESP.getFreeHeap() >> 1, JavaScript::setup);
-
-AppContext *app;
+auto portal = CaptivePortal("ScriptableThings Portal");
 
 void setup()
 {
