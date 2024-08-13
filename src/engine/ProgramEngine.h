@@ -31,7 +31,7 @@ public:
     ProgramEngine encapsulates a JavaScript runtime, powered by [QuickJS](https://bellard.org/quickjs/), to run scripts on microcontrollers from some sort of file system, e.g. SD or SPIFFS. You give a filesystem and directory within it to work with, how much memory to allocate for the JavaScript world and a pointer to a function to customise newly created JavaScript contexts.
 
     ```cpp
-    #include <ProgrammableThings.h>
+    #include <ScriptableThings.h>
 
     void setupJavaScript(JSRuntime *rt, JSContext *ctx, JSValue global)
     {
@@ -46,7 +46,7 @@ public:
 
     The setup method is the interesting bit, it provides a hook to let you add custom stuff in the scripts. Here it adds a new object "thing" that the JavaScript can access.
 
-    For more information see [JavaScript](https://github.com/robb-j/ProgrammableThings#javascript).
+    For more information see [JavaScript](https://github.com/digitalinteraction/ScriptableThings#javascript).
   */
   ProgramEngine(fs::FS *fs, String dir, uint32_t memoryLimit, EngineCallback *setup) : fs(fs), dir(dir), memoryLimit(memoryLimit), setupCallback(setup) {}
   virtual ~ProgramEngine() {}
@@ -94,14 +94,14 @@ public:
 
     Our best practise is to have a "context" object, like `AppContext` which is just an object with pointers to all the useful things your app is using. Then you can use this as your "opaque" value and have access to everything you need from your JavaScript handlers.
 
-    For more information see [JavaScript](https://github.com/robb-j/ProgrammableThings#javascript).
+    For more information see [JavaScript](https://github.com/digitalinteraction/ScriptableThings#javascript).
   */
   void setOpaque(void *ptr) { opaque = ptr; }
 
   /*
     Retrieve your "opaque" object, set from `setOpaque`. ProgramEngine#setOpaque
 
-    For more information see [JavaScript](https://github.com/robb-j/ProgrammableThings#javascript)
+    For more information see [JavaScript](https://github.com/digitalinteraction/ScriptableThings#javascript)
   */
   void *getOpaque() { return opaque; }
 

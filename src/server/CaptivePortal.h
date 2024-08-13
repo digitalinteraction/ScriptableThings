@@ -27,7 +27,7 @@ public:
     A module for creating a captive portal using the [WiFi interface](https://www.arduino.cc/reference/en/libraries/wifi/) and creating a `DNSServer`.
 
     ```cpp
-    #include <ProgrammableThings.h>
+    #include <ScriptableThings.h>
     #include <ESPAsyncWebServer.h>
 
     AsyncWebServer server(80);

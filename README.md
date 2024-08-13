@@ -1,12 +1,12 @@
-# ProgrammableThings
+# ScriptableThings
 
-ProgrammableThings is an Arduino library for building IoT devices that can easily be reprogrammed and reconfigured by users with JavaScript. It introduces a new malleable layer allowing dynamic scripting on devices, instead of all functionality that is statically baked into the firmware. The library enables you to quickly create an API between your hardware and the JavaScript scripting layer. We hope this makes IoT more maintainable over time and more resilient to vanishing cloud services.
+ScriptableThings is an Arduino library for building IoT devices that can easily be reprogrammed and reconfigured by administrators or users with standards-based JavaScript. It introduces a new malleable layer allowing dynamic scripting on devices, instead of functionality being baked into the firmware. The library enables you to create an API between your hardware and the scripting layer. We hope this makes IoT more maintainable over time, more resilient to vanishing cloud services and more-safely hackable devices.
 
 ## Dependencies
 
 The project has no dependencies but it does bundle [QuickJS](https://bellard.org/quickjs/) for the JavaScript engine and a runtime is created on top of that. The HTTP logic is designed to be used with [me-no-dev/ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) so you may want to install that, but it is not required.
 
-ProgrammableThings currently supports ESP32 development boards, we're working on ESP8266 devices and we're interested in the RP2040 chip too.
+ScriptableThings currently supports ESP32 development boards, we're working on ESP8266 devices and we're interested in the RP2040 chip too.
 
 ## Install
 
@@ -17,28 +17,28 @@ The easiest way to get started is with [PlatformIO](https://platformio.org/) whi
 ```ini
 [env:xxx]
 lib_deps =
-  git@github.com:robb-j/ProgrammableThings.git#v0.1.0
+  git@github.com:digitalinteraction/ScriptableThings.git#v0.1.0
 ```
 
 Or alternatively you can clone or submodule the repository into your `libs` folder.
 
 ### Arduino IDE
 
-You can download a zip of the latest from the [GitHub releases](https://github.com/robb-j/ProgrammableThings/releases) and use Arduino IDE's **library manager** feature to install it globally.
+You can download a zip of the latest from the [GitHub releases](https://github.com/digitalinteraction/ScriptableThings/releases) and use Arduino IDE's **library manager** feature to install it globally.
 
 ## Usage
 
-When you want to use ProgrammableThings, you can import any of the header files for specific features you want or there is a catch-all import `ProgrammableThings.h` which includes everything.
+When you want to use ScriptableThings, you can import any of the header files for specific features you want or there is a catch-all import `ScriptableThings.h` which includes everything.
 
 ```cpp
 #include <Arduino.h>
-#include <ProgrammableThings.h>
+#include <ScriptableThings.h>
 #include <ESPAsyncWebServer.h>
 
 #include <SPIFFS.h>
 
 auto server = AsyncWebServer(80);
-auto portal = CaptivePortal("ProgThing Portal");
+auto portal = CaptivePortal("ScriptableThing Portal");
 auto engine = ProgramEngine(&SPIFFS, "/scripts/", ESP.getFreeHeap() >> 1, JavaScript::setup);
 ```
 
@@ -58,15 +58,15 @@ TODO: write more docs on how to do JavaScript stuff
 
 The setup method you pass to `ProgramEngine` lets your customise the JavaScript world the scripts will run in. This means you can inject variables, methods and objects that the JavaScript can use to interact with the hardware they are being run on.
 
-**Private by default** — the engine is designed to reveal nothing about the hardware by default, unlike other microcontroller-JavaScript bindings. You might not necessarily trust the scripts that are being run and you don't want your device turned into a spying device. This is especially relevant because a key part of ProgrammableThings is that the scripts on the device are malleable and can change, rather than being baked in when flashing the controller. This means that any interaction with the hardware needs to be specifically designed and programmed to get it working. While this takes more work, it means you can create a cleaner API between the hardware, firmware and scripts.
+**Private by default** — unlike other microcontroller-JavaScript bindings, the engine is designed to reveal nothing about the hardware by default. You might not necessarily trust the scripts that are being run and you don't want your device turned into a spying device. This is especially relevant because a key part of ScriptableThings is that the scripts on the device are malleable and can change, rather than being baked in when flashing the controller. This means that any interaction with the hardware needs to be specifically designed and programmed to get it working. While this takes more work, it means you can create a cleaner API between the hardware, firmware and scripts.
 
 The setup method is where you create an API between your hardware and the scripts that run on it and you can design that however you like. While `ProgramEngine` is starting a `Program` it will call your `setup` method to customise the JavaScript world which you use to inject your API into it.
 
-Currently, you need to use QuickJS itself to create your API, but we're thinking about easier ways to do this in the future. For example code generation based on documentation-comments.
+Currently, you need to use QuickJS itself to create your API, but we're thinking about easier ways to do this in the future. For example code generation based on documentation-comments or AST analysis.
 
 ```cpp
 #include <Arduino.h>
-#include <ProgrammableThings.h>
+#include <ScriptableThings.h>
 
 class JavaScript
 {
@@ -98,7 +98,7 @@ In the JavaScript world you can now call `Thing.sayHello('geoff')` and it will d
 
 #### JavaScript Runtime
 
-Not all of the things that exist in JavaScript are in the runtime, here is a list of things you can use. QuickJS, which powers JavaScript, supports up to the ES2020 version of JavaScript. Additionally, ProgrammableThings adds:
+Not all of the things that exist in JavaScript are in the runtime, here is a list of things you can use. QuickJS, which powers JavaScript, supports up to the ES2020 version of JavaScript. Additionally, ScriptableThings adds:
 
 - `console.log`
 - `setTimeout`
@@ -117,7 +117,7 @@ You will want the JavaScript world to talk to you hardware in some way and these
 This pointer is passed on to any Program that is created too so you can access it on the Program via `Program#getOpaque`. The pointer is then in-turn set on QuickJS's `JSContext` object for you to access in js-c method bindings.
 
 ```cpp
-#include <ProgrammableThings.h>
+#include <ScriptableThings.h>
 #include "AppContext.h"
 
 class JavaScript

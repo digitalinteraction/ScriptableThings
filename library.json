@@ -1,6 +1,6 @@
 {
-  "name": "ProgrammableThings",
-  "description": "Reprogrammable stuff on microcontrollers",
+  "name": "ScriptableThings",
+  "description": "Empower things with scripts",
   "keywords": "",
   "authors": {
     "name": "Rob Anderson",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/robb-j/ProgrammableThings"
+    "url": "https://github.com/digitalinteraction/ScriptableThings"
   },
   "version": "0.1.0",
   "license": "MIT",

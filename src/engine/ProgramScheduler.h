@@ -33,7 +33,7 @@ public:
     ProgramScheduler is responsible for managing & processing timers from the JavaScript world.
 
     ```cpp
-    #include <ProgrammableThings.h>
+    #include <ScriptableThings.h>
 
     auto scheduler = new ProgramScheduler(context);
     ```

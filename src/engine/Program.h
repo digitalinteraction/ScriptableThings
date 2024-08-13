@@ -58,14 +58,14 @@ public:
 
     This is useful in your JavaScript bindings so the code that is called from the JavaScript land can dereference this value and interact with the firmware in some way.
 
-    For more information see [JavaScript](https://github.com/robb-j/ProgrammableThings#javascript).
+    For more information see [JavaScript](https://github.com/digitalinteraction/ScriptableThings#javascript).
   */
   void setOpaque(void *ptr) { opaque = ptr; }
 
   /*
     Get the program's "opaque" value and cast it back to it's original type. More info at `Program#setOpaque`
 
-    For more information see [JavaScript](https://github.com/robb-j/ProgrammableThings#javascript).
+    For more information see [JavaScript](https://github.com/digitalinteraction/ScriptableThings#javascript).
   */
   template <class T>
   T *getOpaque() { return static_cast<T *>(opaque); }
