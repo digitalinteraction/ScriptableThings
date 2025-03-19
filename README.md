@@ -165,6 +165,16 @@ In the future it would be interesting to explore more dynamic ways of getting sc
 
 There are more plans for HTTP features in the future, but for now there is just a CaptivePortal and you can use an AsyncWebServer yourself. See [examples/CaptivePortal](/examples/captive-portal/) for info on how to do that or the [AsyncWebServer docs](https://github.com/me-no-dev/ESPAsyncWebServer).
 
+## Roadmap
+
+These are directions we'd like the library to go in from here
+
+- **Automated JavaScript interface generation** — Generate the c++ code that interfaces JavaScript and c-level code based on a documentation like [OpenAPI](https://swagger.io/specification/), currently this is [very manual](https://github.com/digitalinteraction/openlab-sign/blob/main/src/JavaScript.h). Possibly based one [ctags](https://github.com/universal-ctags/ctags) or [doxygen](https://www.doxygen.nl/index.html)
+- **USB Host mode** — make the Arduino appear as a USB-drive when plugged into a computer so scripts can be loaded on that way
+- **Integrated code editor** — A code editor within the device that can be served over HTTP to edit the scripts on the device itself, pulling in the auto-generated documentation / JavaScript API. Also a "changelog" like feature like a car's logbook
+- **Simple configuration** — A way for an app to define it's user-configuration, an API to change those parameters and a web-app to serve for a user to change those parameters too. Potentially based on [JSONSchema](https://json-schema.org/)
+- **WiFi YoYo** — A standardised API/UI to get an Arduino onto a WiFi network by first serving a captive portal where the user enters WiFi credentials
+
 ## Useful links
 
 - [QuickJS docs](https://bellard.org/quickjs/quickjs.html)
